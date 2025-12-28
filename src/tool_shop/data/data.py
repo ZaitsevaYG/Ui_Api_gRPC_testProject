@@ -1,0 +1,1 @@
+main_link = "https://ozon.tech/"
