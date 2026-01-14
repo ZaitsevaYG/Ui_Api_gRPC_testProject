@@ -1,6 +1,6 @@
 
 from playwright.sync_api import Page, expect
-
+import allure
 
 class MainPage:
 
@@ -29,3 +29,4 @@ class MainPage:
 
         #Элемент
         self.product_card = page.locator("[data-test=\"product-name\"]")
+

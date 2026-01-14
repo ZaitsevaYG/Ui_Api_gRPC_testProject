@@ -1,0 +1,96 @@
+  # =========================
+# Python & Poetry
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Poetry lock и виртуальные окружения
+poetry.lock
+# Не игнорируем pyproject.toml — он нужен!
+.env
+.venv/
+venv/
+ENV/
+
+# =========================
+# pytest & testing
+# =========================
+pytest.ini  # ← только если содержит секреты; иначе можно коммитить
+test_results/
+reports/
+allure-results/
+allure-report/
+
+# =========================
+# Playwright
+# =========================
+/test-results/
+/videos/
+/screenshots/
+/playwright-report/
+blob-report/
+
+# Browser binaries (обычно не коммитятся)
+/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# TestIT
+# =========================
+testit.ini          # ← содержит токены и приватные данные
+testrun.json        # ← если генерируется локально
+
+# =========================
+# IDE & Editors
+# =========================
+.idea/              # PyCharm
+.vscode/            # VS Code (если нет общих настроек)
+*.swp
+*.swo
+.DS_Store           # macOS
+Thumbs.db           # Windows
+
+# =========================
+# Docker
+# =========================
+.dockerignore
+compose.override.yml  # ← если содержит локальные настройки
+.env.local
+.env.*.local
+
+# =========================
+# OS & Misc
+# =========================
+*.log
+*.tmp
+*.bak
+*~
