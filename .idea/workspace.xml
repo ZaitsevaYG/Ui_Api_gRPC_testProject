@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="api and grpc configs">
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool_shop/pages/web_pages/main_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/pages/web_pages/main_page.py" afterDir="false" />
-    </list>
+    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="api and grpc configs" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +92,39 @@
       <option name="project" value="LOCAL" />
       <updated>1767018987331</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="api and grpc configs">
+      <option name="closed" value="true" />
+      <created>1768415400234</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1768415400235</updated>
+    </task>
+    <task id="LOCAL-00005" summary="api and grpc configs">
+      <option name="closed" value="true" />
+      <created>1768415433668</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1768415433668</updated>
+    </task>
+    <task id="LOCAL-00006" summary="api and grpc configs">
+      <option name="closed" value="true" />
+      <created>1768415462848</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1768415462848</updated>
+    </task>
+    <task id="LOCAL-00007" summary="api and grpc configs">
+      <option name="closed" value="true" />
+      <created>1768415492651</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1768415492651</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
