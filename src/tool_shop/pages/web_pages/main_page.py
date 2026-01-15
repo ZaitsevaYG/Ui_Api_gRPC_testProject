@@ -45,9 +45,10 @@ class MainPage:
         self.rating_badge = page.locator("[data-test='co2-rating-badge']")
 
 
-    def navigate_main_page(self):
-        self.page.goto(main_link, wait_until='domcontentloaded', timeout=60000)
-        expect(self.product_cards.first).to_be_visible(timeout=10000)
+    def navigate(self):
+        with allure.step(f"Загрузка основной страницы сайта"):
+            self.page.goto(main_link, wait_until='domcontentloaded', timeout=60000)
+            expect(self.product_cards.first).to_be_visible(timeout=10000)
 
 
     def search_by_the_name(self, product):
