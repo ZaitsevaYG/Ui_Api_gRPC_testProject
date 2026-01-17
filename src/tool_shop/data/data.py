@@ -1,9 +1,9 @@
-import dataclasses
+from dataclasses import dataclass, field
 from typing import Optional
 
 main_link = "http://localhost:4200/"
 
-@dataclasses.dataclass
+@dataclass
 class Product:
     name: Optional[str] = None
     price: Optional[float] = None
@@ -11,6 +11,14 @@ class Product:
     category: Optional[str] = None
     brand: Optional[str] = None
     id: Optional[str] = None
+    url: Optional[str] = field(init=False)
+
+
+    def __post_init__(self):
+        if self.id:
+            self.url = f"{main_link}product/{self.id}"
+        else:
+            self.url = None
 
 
 SCREWS = Product(
@@ -19,5 +27,15 @@ SCREWS = Product(
     co2 = '',
     category = "",
     brand = "",
-    id = ""
+    id = "",
+
+)
+
+THORHUMMER = Product(
+    name = 'Thor Hammer',
+    price = 11.14,
+    co2 = 'D',
+    category = "Hammer",
+    brand = "ForgeFlex Tools",
+    id="01KDG94CN5W4A9ZRNE8K3TPT1G"
 )

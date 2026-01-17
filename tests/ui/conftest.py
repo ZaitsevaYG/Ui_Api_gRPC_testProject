@@ -1,15 +1,10 @@
-import re
 
 import pytest
 
+from tool_shop.data.data import THORHUMMER
 from tool_shop.pages.web_pages.main_page import MainPage
+from tool_shop.pages.web_pages.product_page import ProductPage
 
-
-def extract_price_from_text(text: str) -> float:
-    match = re.search(r"[\d.,]+", text)
-    if not match:
-        raise ValueError(f"Не удалось извлечь цену из: {text}")
-    return float(match.group().replace(",", "."))
 
 @pytest.fixture
 def main_page(browser):
@@ -18,4 +13,13 @@ def main_page(browser):
     mp = MainPage(page)
     mp.navigate()
     yield mp
+    context.close()
+
+@pytest.fixture
+def product_page(browser):
+    context = browser.new_context()
+    page = context.new_page()
+    pp = ProductPage(page, THORHUMMER)
+    pp.navigate()
+    yield pp
     context.close()

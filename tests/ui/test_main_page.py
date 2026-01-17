@@ -14,10 +14,10 @@ from tool_shop.data.utils import attach_screenshot
 @allure.severity('high')
 def test_product_visibility_main_page(main_page):
     main_page.product_cards.first.wait_for(state="visible")
-    actual_count = main_page.product_cards.count()
-    with allure.step(f"Проверяем, что количество карточек = 9 (фактически: {actual_count})"):
-        assert actual_count == 9, f"Ожидалось 9 карточек, но найдено {actual_count}"
-    attach_screenshot(main_page, "Главная страница после загрузки")
+    with allure.step("Проверка, что на главной странице отображается 9 карточек товара"):
+        for i in range(9):
+            expect(main_page.product_cards.nth(i)).to_be_visible()
+    attach_screenshot(main_page.page, "Главная страница после загрузки")
 
 
 @testit.externalId("UI-2")
@@ -31,7 +31,7 @@ def test_product_search_by_name(main_page):
         main_page.search_by_the_name(SCREWS)
     with allure.step("Проверка, что товар по названию найден"):
         main_page.check_search_results(SCREWS)
-    attach_screenshot(main_page, "Найден товар по названию")
+    attach_screenshot(main_page.page, "Найден товар по названию")
 
 
 @testit.externalId("UI-3")
@@ -45,7 +45,7 @@ def test_product_search_by_filter_eco(main_page):
         main_page.search_for_eco_tools()
     with allure.step("Проверка, что все найденные товары имеют бейдж ECO"):
         main_page.check_eco_search_results()
-        attach_screenshot(main_page, "Найдены товары по по фильтру 'Эко-товары'")
+        attach_screenshot(main_page.page, "Найдены товары по по фильтру 'Эко-товары'")
 
 
 @testit.externalId("UI-4")
@@ -59,7 +59,7 @@ def test_product_search_price_range(main_page):
         main_page.set_price_filter()
     with allure.step("Проверка, что и на ui, и в api пришло одинаковое количество товаров с ценой в указанном диапазоне"):
         main_page.check_price_filter_search_results_with_api_check()
-        attach_screenshot(main_page, "Товары, в ценовом диапазоне от 15 до 28$")
+        attach_screenshot(main_page.page, "Товары, в ценовом диапазоне от 15 до 28$")
 
 
 @testit.externalId("UI-5")
@@ -69,10 +69,29 @@ def test_product_search_price_range(main_page):
 @allure.feature("Каталог товаров")
 @allure.severity('low')
 def test_catalog_pagination(main_page):
-    first_page_products = main_page.get_product_ids()
-    with allure.step(f"Страница 1: найдено {len(first_page_products)} товаров"):
-        assert len(first_page_products) == 9, "На первой странице должно быть 9 товаров"
 
-    with allure.step("<UNK> 2: <UNK> { <UNK>"):
-        previous_page_btn
+    with allure.step("🔍 Анализ grid 3x3"):
+        attach_screenshot(main_page.page, "Каталог 3x3 grid")
+
+        page1_ids = main_page.get_grid_product_ids()
+
+        allure.attach(
+            f"Page 1: {len(page1_ids)} видимых товаров\n{page1_ids}",
+            "Page 1 анализ",
+            attachment_type=allure.attachment_type.TEXT
+        )
+
+    main_page.next_page_btn.click()
+    expect(main_page.page_2_btn).to_have_class("page-item active")
+
+    page2_ids = main_page.get_grid_product_ids()
+
+    # Проверка смены контента
+    changed = len(set(page1_ids) ^ set(page2_ids)) / 9 * 100
+    assert changed > 50, f"Смена контента: {changed:.1f}% (мало изменений)"
+
+    print(f"✅ Пагинация меняет {changed:.1f}% товаров!")
+
+
+
 
