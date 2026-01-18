@@ -39,3 +39,14 @@ THORHUMMER = Product(
     brand = "ForgeFlex Tools",
     id="01KDG94CN5W4A9ZRNE8K3TPT1G"
 )
+
+
+@dataclass
+class User:
+    email: str
+    password: str
+
+
+TESTUSER1 = User(
+    email='customer@practicesoftwaretesting.com',
+    password='welcome01')

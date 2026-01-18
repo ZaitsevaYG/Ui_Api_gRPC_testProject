@@ -58,8 +58,10 @@ class MainPage:
 
     def search_and_click_from_main_page(self, product: Product):
         self.search_field.click()
-        self.search_field.type(product.name)
-        self.search_btn.click()
+        self.search_field.fill(product.name)
+        self.search_btn.click(timeout=60000)
+
+        expect(self.product_card_name).to_be_visible(timeout=10000)
         expect(self.product_card_name).to_have_text(product.name)
         self.product_card_name.click(timeout=10000)
 
