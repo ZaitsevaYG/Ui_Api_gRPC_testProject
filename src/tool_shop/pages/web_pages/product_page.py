@@ -97,8 +97,8 @@ class ProductPage:
         expect(self.page).to_have_url("http://localhost:4200/account/favorites")
 
     def debug_menu(self):
-        """Debug dropdown меню"""
-        print("🔍 Все элементы навигации:")
+
+
         nav_elements = self.page.locator("[data-test*='nav']").all()
         for i, el in enumerate(nav_elements):
             print(f"{i}. {el.get_attribute('data-test')} = {el.text_content()}")

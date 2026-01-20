@@ -90,6 +90,4 @@ def test_catalog_pagination(main_page):
     changed = len(set(page1_ids) ^ set(page2_ids)) / 9 * 100
     assert changed > 50, f"Смена контента: {changed:.1f}% (мало изменений)"
 
-    print(f"✅ Пагинация меняет {changed:.1f}% товаров!")
-
 

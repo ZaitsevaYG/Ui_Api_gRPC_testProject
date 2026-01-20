@@ -16,9 +16,10 @@ from tool_shop.pages.web_pages.sing_in_page import SingInPage
 @allure.severity('medium')
 def test_add_to_favorites_e2e(page):
     # Логин
-    login_page = SingInPage(page, TESTUSER1)
-    login_page.navigation()
-    login_page.singing_in()
+    login_page = SingInPage(page)
+    login_page.navigate()
+    login_page.singing_in(TESTUSER1)
+
 
     # Товар
     product_page = ProductPage(page, THORHUMMER)

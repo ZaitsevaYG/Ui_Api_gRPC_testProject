@@ -50,3 +50,8 @@ class User:
 TESTUSER1 = User(
     email='customer@practicesoftwaretesting.com',
     password='welcome01')
+
+WRONGUSER = User(
+    email='unexisting@email.com',
+    password='qwerty'
+)
