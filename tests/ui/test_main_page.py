@@ -2,7 +2,7 @@ import allure
 import testit
 from playwright.sync_api import expect
 
-from tool_shop.data.data import SCREWS
+from tool_shop.data.data import SCREWS, THORHUMMER
 from tool_shop.data.utils import attach_screenshot
 
 
@@ -91,7 +91,5 @@ def test_catalog_pagination(main_page):
     assert changed > 50, f"Смена контента: {changed:.1f}% (мало изменений)"
 
     print(f"✅ Пагинация меняет {changed:.1f}% товаров!")
-
-
 
 

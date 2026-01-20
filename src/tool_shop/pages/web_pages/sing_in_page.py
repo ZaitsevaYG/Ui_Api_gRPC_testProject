@@ -22,11 +22,11 @@ class SingInPage:
             self.page.goto( f"{main_link}/auth/login", timeout=60000)
             expect(self.email).to_be_visible(timeout=60000)
 
-    def singing_in(self, user):
+    def singing_in(self):
         with allure.step("Внести данные юзера"):
             expect(self.email).to_be_visible()
-            self.email.fill(user.email)
-            self.password.fill(user.password)
+            self.email.fill(self.user.email)
+            self.password.fill(self.user.password)
             expect(self.password).to_have_attribute("type", "password")
 
         with allure.step("Нажать кнопку 'Показать пароль'"):
@@ -41,7 +41,7 @@ class SingInPage:
 
         with allure.step("Нажать кнопку 'Login'"):
             self.submit_btn.click(timeout=6000)
-            expect(self.page).to_have_url("**/account")
+            expect(self.page).to_have_url("http://localhost:4200/account", timeout=15000)
             expect(self.my_account_title).to_be_visible(timeout=10000)
             expect(self.my_account_title).to_have_text("My account")
 

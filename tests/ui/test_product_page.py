@@ -4,7 +4,7 @@ import testit
 
 from tool_shop.data.data import THORHUMMER
 from tool_shop.data.utils import attach_screenshot
-from tool_shop.pages.web_pages.favorites_page import FavoritesPage
+
 from tool_shop.pages.web_pages.main_page import MainPage
 from tool_shop.pages.web_pages.product_page import ProductPage
 
@@ -21,10 +21,10 @@ def test_product_description_page_check(page):
         main_page.navigate()
         main_page.search_and_click_from_main_page(THORHUMMER)
 
-    with allure.step("Переход на карточку товара через клик на главной странице"):
+    with allure.step("Проверка отображаемой информации и активности кнопок на странице товара"):
         product_page = ProductPage(page,THORHUMMER)
-        product_page.check_product_details(THORHUMMER)
-        product_page.check_co2_rating(THORHUMMER)
+        product_page.check_product_details()
+        product_page.check_co2_rating()
         attach_screenshot(page, "Страница с данными товара")
 
 @testit.externalId("UI-7")

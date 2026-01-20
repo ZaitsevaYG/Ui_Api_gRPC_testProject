@@ -3,29 +3,36 @@ name = "tool_shop"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Yana Zaitseva",email = "zaitsevayg@gmail.com"}
+    {name = "Yana Zaitseva", email = "zaitseva.yg@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.13"
 
 [tool.poetry.dependencies]
 python = ">=3.13,<4.0"
-pytest = "9.0.2"
-jsonschema = "4.26.0"
+
+# CORE
+pytest = "7.4.4"
+pytest-playwright = "^0.7.2"
+playwright = "^1.47.0"
+allure-pytest = "^2.13.3"
+
+# API
 requests = "^2.31.0"
+jsonschema = "4.26.0"
 python-dotenv = "^1.2.1"
-selene = "^2.0.0rc9"
-allure-pytest = "^2.15.3"
-playwright = "^1.56.0"
-selenium ="^4.39.0"
-Appium-Python-Client="^5.2.4"
-testit-adapter-pytest = "^3.10.9"
+
 
 
 [tool.poetry]
-packages = [{include = "Tool_shop", from = "src"}]
+packages = [{include = "tool_shop", from = "src"}]
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
+# Playwright
+[tool.playwright]
+chromium = true
+firefox = false
+webkit = false

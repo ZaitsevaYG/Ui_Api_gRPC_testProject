@@ -59,9 +59,14 @@ class MainPage:
     def search_and_click_from_main_page(self, product: Product):
         self.search_field.click()
         self.search_field.fill(product.name)
-        self.search_btn.click(timeout=60000)
+        self.search_btn.click(timeout=10000)
+        self.page.wait_for_load_state("networkidle", timeout=15000)
+        expect(self.search_caption).to_be_visible(timeout=10000)
+        self.page.wait_for_timeout(2000)
+        self.product_card_name.scroll_into_view_if_needed(timeout=10000)
 
         expect(self.product_card_name).to_be_visible(timeout=10000)
+
         expect(self.product_card_name).to_have_text(product.name)
         self.product_card_name.click(timeout=10000)
 
@@ -78,6 +83,7 @@ class MainPage:
 
     def search_for_eco_tools(self):
         self.filters_sustainability.click(timeout=10000)
+        self.product_cards.first.scroll_into_view_if_needed(timeout=10000)
 
 
     def check_eco_search_results(self):
@@ -191,9 +197,6 @@ class MainPage:
         """)
 
 
-    # @property
-    # def product_locator(self):
-    #     return self.product_cards
 
     def wait_for_products(self, count=9, timeout=10000):
         expect(self.product_cards).to_have_count(count, timeout=timeout)
