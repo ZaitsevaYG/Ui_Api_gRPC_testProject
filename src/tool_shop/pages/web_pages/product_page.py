@@ -17,6 +17,7 @@ class ProductPage:
         self.co_rating = page.locator("[data-test='co2-rating-badge']")
         self.category_badge = page.locator('span[aria-label="category"]')
         self.brand_badge = page.locator('span[aria-label="brand"]')
+        self.out_of_stock = page.locator("[data-test='out-of-stock']")
 
         self.quantity = page.locator("[data-test='quantity']")
         self.increase_quantity = page.locator("[data-test='increase-quantity']")
@@ -75,9 +76,9 @@ class ProductPage:
         self.add_to_card_btn.click(timeout=10000)
 
     def add_to_favorites_and_check(self):
-        expect(self.add_to_favorites_btn).to_be_visible(timeout=10000)
+        expect(self.add_to_favorites_btn).to_be_visible(timeout=6000)
         expect(self.add_to_favorites_btn).to_be_enabled()
-        self.add_to_favorites_btn.click(timeout=10000)
+        self.add_to_favorites_btn.click(timeout=6000)
         expect(self.alert_message).to_be_visible()
         attach_screenshot(self.page, "Товар добавлен в избранное")
         expect(self.alert_message).to_have_text("Product added to your favorites list.")
@@ -90,21 +91,17 @@ class ProductPage:
         self.add_to_favorites_btn.click(timeout=10000)
 
     def go_to_favorites(self):
+        expect(self.alert_message).to_be_hidden(timeout=10000)
+        expect(self.nav_account_toggle).to_be_visible(timeout=10000)
         self.nav_account_toggle.hover()
         self.nav_account_toggle.click()
         self.page.wait_for_timeout(500)
         self.nav_favorites_link.click()
         expect(self.page).to_have_url("http://localhost:4200/account/favorites")
 
-    def debug_menu(self):
-
-
-        nav_elements = self.page.locator("[data-test*='nav']").all()
-        for i, el in enumerate(nav_elements):
-            print(f"{i}. {el.get_attribute('data-test')} = {el.text_content()}")
-
-        self.page.hover("[data-test='nav-account']")
-        self.page.wait_for_timeout(1000)
+    def go_to_cart(self):
+        expect(self.go_to_cart_btn).to_be_visible()
+        self.go_to_cart_btn.click(timeout=10000)
 
 
 

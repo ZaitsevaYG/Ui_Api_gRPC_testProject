@@ -21,8 +21,6 @@ class FavoritesPage:
 
     def check_product_in_favorites_and_delete(self):
         with allure.step("Проверка наличия товара в избранном"):
-            #self.page.wait_for_timeout(10000)
-            #self.page.wait_for_load_state("networkidle")
 
             expect(self.product_name_in_fav).to_be_visible()
             expect(self.product_name_in_fav).to_have_text(self.product.name)

@@ -20,7 +20,7 @@ def test_successful_login(singin_page):
 @allure.title("UI-10: Проверка невозможности залогиниться с несуществующими в базе почтой и паролем")
 @allure.tag('ui', 'auth')
 @allure.feature("Логин")
-@allure.severity('high')
-def test_successful_login(singin_page):
+@allure.severity('medium')
+def test_unsuccessful_login(singin_page):
     singin_page.singing_in(WRONGUSER)
     singin_page.check_unsuccessful_login()

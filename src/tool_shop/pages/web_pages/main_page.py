@@ -2,7 +2,7 @@ import requests
 from playwright.sync_api import Page, expect
 import allure
 import json
-from tool_shop.data.utils import extract_price_from_text
+from tool_shop.data.utils import parse_price
 from tool_shop.data.data import main_link, Product
 
 
@@ -62,7 +62,7 @@ class MainPage:
         self.search_btn.click(timeout=10000)
         self.page.wait_for_load_state("networkidle", timeout=15000)
         expect(self.search_caption).to_be_visible(timeout=10000)
-        self.page.wait_for_timeout(2000)
+        self.page.wait_for_timeout(6000)
         self.product_card_name.scroll_into_view_if_needed(timeout=10000)
 
         expect(self.product_card_name).to_be_visible(timeout=10000)
@@ -83,7 +83,7 @@ class MainPage:
 
     def search_for_eco_tools(self):
         self.filters_sustainability.click(timeout=10000)
-        self.product_cards.first.scroll_into_view_if_needed(timeout=10000)
+
 
 
     def check_eco_search_results(self):
@@ -138,7 +138,7 @@ class MainPage:
                 price_texts = price_locator.all_text_contents()
 
                 ui_prices = [
-                    round(extract_price_from_text(text), 2)
+                    round(parse_price(text), 2)
                     for text in price_texts
                     if text.strip()
                 ]

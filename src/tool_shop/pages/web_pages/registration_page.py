@@ -6,8 +6,8 @@ from playwright.sync_api import Page, expect
 class RegistrationPage:
     def __init__(self, page: Page):
         self.page = page
-        self.first_name = page.locator("[data-test=\"first-name\"]")
-        self.last_name = page.locator("[data-test=\"last-name\"]")
+        self.first_name = page.locator("[data-test=\"first-full_name\"]")
+        self.last_name = page.locator("[data-test=\"last-full_name\"]")
         self.date_of_birth = page.locator("[data-test=\"dob\"]")
 
         #adress

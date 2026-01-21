@@ -33,3 +33,4 @@ def singin_page(browser):
     sp.navigate()
     yield sp
     context.close()
+
