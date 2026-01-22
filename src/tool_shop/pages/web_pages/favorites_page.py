@@ -3,7 +3,7 @@ import allure
 from tool_shop.data.data import Product
 from playwright.sync_api import Page, expect
 
-from tool_shop.data.utils import attach_screenshot
+from tool_shop.data.helpers import attach_screenshot
 
 
 class FavoritesPage:

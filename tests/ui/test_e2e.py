@@ -4,7 +4,7 @@ import allure
 import testit
 from playwright.sync_api import Page, expect
 from tool_shop.data.data import THORHUMMER, TESTUSER1, WOODSAW, GUESTUSER, MEASURINGTAPE
-from tool_shop.data.utils import attach_screenshot, parse_price
+from tool_shop.data.helpers import attach_screenshot, parse_price
 from tool_shop.pages.web_pages.cart_page import CartPage
 from tool_shop.pages.web_pages.favorites_page import FavoritesPage
 from tool_shop.pages.web_pages.product_page import ProductPage

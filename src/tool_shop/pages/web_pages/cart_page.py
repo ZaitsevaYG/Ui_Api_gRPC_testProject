@@ -2,8 +2,9 @@ import re
 
 import allure
 from playwright.sync_api import Page, expect
-from src.tool_shop.data.data import Product, main_link, User
-from tool_shop.data.utils import attach_screenshot, parse_price, parse_discount
+from src.tool_shop.data.data import Product, User
+from config import Config
+from tool_shop.data.helpers import attach_screenshot, parse_price, parse_discount
 
 
 class CartPage:
@@ -57,7 +58,7 @@ class CartPage:
 
     def navigate(self):
         with allure.step(f"Загрузка страницы логина"):
-            self.page.goto( f"{main_link}/checkout", timeout=60000)
+            self.page.goto( f"{Config.UI_BASE_URL}/checkout", timeout=60000)
             expect(self.proceed_to_checkout_cart).to_be_visible(timeout=60000)
 
     def checkout_check_data_eco(self, product: Product):

@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
-main_link = "http://localhost:4200/"
+from config import Config
+
 
 @dataclass
 class Product:
@@ -16,7 +17,7 @@ class Product:
 
     def __post_init__(self):
         if self.id:
-            self.url = f"{main_link}product/{self.id}"
+            self.url = f"{Config.UI_BASE_URL}product/{self.id}"
         else:
             self.url = None
 

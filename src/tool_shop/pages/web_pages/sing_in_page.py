@@ -1,8 +1,9 @@
 import allure
 from playwright.sync_api import Page, expect
 
-from tool_shop.data.data import User, main_link
-from tool_shop.data.utils import attach_screenshot
+from tool_shop.data.data import User
+from config import Config
+from tool_shop.data.helpers import attach_screenshot
 
 
 class SingInPage:
@@ -20,7 +21,7 @@ class SingInPage:
 
     def navigate(self):
         with allure.step(f"Загрузка страницы логина"):
-            self.page.goto( f"{main_link}/auth/login", timeout=60000)
+            self.page.goto( f"{Config.UI_BASE_URL}/auth/login", timeout=60000)
             expect(self.email).to_be_visible(timeout=60000)
 
     def singing_in(self, user: User):

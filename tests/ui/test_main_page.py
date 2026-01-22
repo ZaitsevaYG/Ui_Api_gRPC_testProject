@@ -2,8 +2,8 @@ import allure
 import testit
 from playwright.sync_api import expect
 
-from tool_shop.data.data import SCREWS, THORHUMMER
-from tool_shop.data.utils import attach_screenshot
+from tool_shop.data.data import SCREWS
+from tool_shop.data.helpers import attach_screenshot
 
 
 @testit.externalId("UI-1")

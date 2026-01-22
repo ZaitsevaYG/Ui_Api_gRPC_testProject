@@ -3,7 +3,7 @@ import testit
 from playwright.sync_api import expect
 
 from tool_shop.data.data import THORHUMMER, LONGNOSEPILERS
-from tool_shop.data.utils import attach_screenshot
+from tool_shop.data.helpers import attach_screenshot
 
 from tool_shop.pages.web_pages.main_page import MainPage
 from tool_shop.pages.web_pages.product_page import ProductPage

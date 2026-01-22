@@ -1,9 +1,9 @@
 import requests
 from playwright.sync_api import Page, expect
 import allure
-import json
-from tool_shop.data.utils import parse_price
-from tool_shop.data.data import main_link, Product
+from tool_shop.data.helpers import parse_price
+from tool_shop.data.data import Product
+from config import Config
 
 
 class MainPage:
@@ -12,15 +12,15 @@ class MainPage:
         self.page = page
 
         #Навигационное меню
-        self.home_btn = page.locator("[data-test=\"nav-home\"]")
-        self.categories_btn = page.locator("[data-test=\"nav-categories\"]")
-        self.contact_btn = page.locator("[data-test=\"nav-contact\"]")
-        self.sing_in_btn = page.locator("[data-test=\"nav-sign-in\"]")
+        self.home_btn = page.locator("[data-test='nav-home']")
+        self.categories_btn = page.locator("[data-test='nav-categories']")
+        self.contact_btn = page.locator("[data-test='nav-contact']")
+        self.sing_in_btn = page.locator("[data-test='nav-sign-in']")
 
         #Фильтры
-        self.sort_dropdown_price_desc = page.locator("[data-test=\"sort\"]")
-        self.search_field = page.locator("[data-test=\"search-query\"]")
-        self.search_btn = page.locator("[data-test=\"search-submit\"]")
+        self.sort_dropdown_price_desc = page.locator("[data-test='sort']")
+        self.search_field = page.locator("[data-test='search-query']")
+        self.search_btn = page.locator("[data-test='search-submit']")
         self.filters_power_tools = page.locator("#filters").get_by_text("Power Tools")
         self.filters_brand = page.get_by_text("ForgeFlex Tools")
         self.filters_sustainability = page.get_by_text("Show only eco-friendly")
@@ -47,7 +47,7 @@ class MainPage:
 
     def navigate(self):
         with allure.step(f"Загрузка основной страницы сайта"):
-            self.page.goto(main_link, wait_until='networkidle', timeout=60000)
+            self.page.goto(Config.UI_BASE_URL, wait_until='networkidle', timeout=60000)
             expect(self.product_cards.first).to_be_visible(timeout=10000)
 
 

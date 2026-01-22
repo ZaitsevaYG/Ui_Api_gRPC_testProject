@@ -1,0 +1,144 @@
+
+import requests
+from typing import Dict, Any
+from config import Config
+
+
+class APIClient:
+
+    def __init__(self, base_url: str = None, token: str = None):
+        self.base_url = base_url or Config.API_BASE_URL
+        self.token = token or Config.API_TOKEN
+        self.timeout = Config.API_TIMEOUT
+
+    def _get_headers(self, **kwargs) -> Dict[str, str]:
+
+        headers = {
+            "Content-Type": "application/json",
+        }
+        if self.token:
+            headers["Authorization"] = f"Bearer {self.token}"
+        headers.update(kwargs)
+        return headers
+
+    def get(self, endpoint: str, params: Dict[str, Any] = None, **kwargs) -> requests.Response:
+
+        url = f"{self.base_url}{endpoint}"
+        return requests.get(
+            url,
+            headers=self._get_headers(),
+            params=params,
+            timeout=self.timeout,
+            **kwargs
+        )
+
+    def post(self, endpoint: str, data: Dict[str, Any] = None, files=None, **kwargs) -> requests.Response:
+
+        url = f"{self.base_url}{endpoint}"
+
+        if files:
+
+            headers = {k: v for k, v in self._get_headers().items()
+                       if k != "Content-Type"}
+            return requests.post(
+                url,
+                headers=headers,
+                data=data,
+                files=files,
+                timeout=self.timeout,
+                **kwargs
+            )
+
+        return requests.post(
+            url,
+            json=data,
+            headers=self._get_headers(),
+            timeout=self.timeout,
+            **kwargs
+        )
+
+    def put(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
+
+        url = f"{self.base_url}{endpoint}"
+        return requests.put(
+            url,
+            json=data,
+            headers=self._get_headers(),
+            timeout=self.timeout,
+            **kwargs
+        )
+
+    def patch(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
+
+        url = f"{self.base_url}{endpoint}"
+        return requests.patch(
+            url,
+            json=data,
+            headers=self._get_headers(),
+            timeout=self.timeout,
+            **kwargs
+        )
+
+    def delete(self, endpoint: str, **kwargs) -> requests.Response:
+
+        url = f"{self.base_url}{endpoint}"
+        return requests.delete(
+            url,
+            headers=self._get_headers(),
+            timeout=self.timeout,
+            **kwargs
+        )
+
+
+class AuthAPIClient(APIClient):
+
+    def login(self, email: str, password: str) -> Dict[str, Any]:
+
+        response = self.post(
+            "/users/login",
+            data={"email": email, "password": password}
+        )
+        response.raise_for_status()
+        return response.json()
+
+    def set_token(self, token: str):
+
+        self.token = token
+
+    def refresh_token(self) -> Dict[str, Any]:
+
+        response = self.get("/users/refresh")
+        response.raise_for_status()
+        data = response.json()
+        self.set_token(data.get("access_token"))
+        return data
+
+    def logout(self):
+
+        response = self.get("/users/logout")
+        response.raise_for_status()
+        self.token = None
+        return response.json()
+
+    def get_current_user(self) -> Dict[str, Any]:
+
+        response = self.get("/users/me")
+        response.raise_for_status()
+        return response.json()
+
+
+
+def assert_response_status(response: requests.Response, expected_status: int):
+
+    assert response.status_code == expected_status, (
+        f"Expected status {expected_status}, got {response.status_code}. "
+        f"Response: {response.text}"
+    )
+
+
+def assert_response_json(response: requests.Response, expected_keys: list):
+
+    data = response.json()
+    for key in expected_keys:
+        assert key in data, f"Expected key '{key}' not found in response: {data}"
+    return data
