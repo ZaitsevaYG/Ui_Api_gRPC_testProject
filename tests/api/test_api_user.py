@@ -35,7 +35,7 @@ def test_post_create_new_user(api_client: APIClient, valid_user_registration_dat
     assert "created_at" in data
 
     user_id = data["id"]
-    update_env_var({"USER_ID": user_id})
+    update_env_var(updates={"USER_ID": user_id})
 
     allure.attach(
         f"User_id: {user_id}",
@@ -104,7 +104,7 @@ def test_post_successful_login(api_client: AuthAPIClient):
     data = response.json()
 
     token = data["access_token"]
-    update_env_var({"AUTH_TOKEN": token})
+    update_env_var(updates={"AUTH_TOKEN": token})
 
     allure.attach(
         f"Token: {token}",

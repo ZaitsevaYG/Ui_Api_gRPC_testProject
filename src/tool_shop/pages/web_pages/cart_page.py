@@ -215,6 +215,7 @@ class CartPage:
         expect(self.alert_message).to_be_hidden(timeout=10000)
         self.product_quantity.fill("2")
         self.product_quantity.press("Enter")
+        self.product_quantity.press("Enter")
         expect(self.alert_message).to_be_visible()
         expect(self.alert_message).to_have_text("Product quantity updated.")
         attach_screenshot(self.page)

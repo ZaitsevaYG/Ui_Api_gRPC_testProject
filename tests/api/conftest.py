@@ -6,8 +6,9 @@ from allure_commons.types import AttachmentType
 from faker import Faker
 import pytest
 
-from tool_shop.data.data import MEASURINGTAPE, LONGNOSEPILERS
+from tool_shop.data.data import MEASURINGTAPE, LONGNOSEPILERS, WOODSAW, THORHUMMER
 from tool_shop.utils.api_client import APIClient, AuthAPIClient
+from tool_shop.utils.validators import CartValidator
 
 faker = Faker()
 
@@ -22,6 +23,14 @@ def measuring_tape():
 @pytest.fixture
 def pilers():
     return LONGNOSEPILERS
+
+@pytest.fixture
+def woodsaw():
+    return WOODSAW
+
+@pytest.fixture
+def hammer():
+    return THORHUMMER
 
 @pytest.fixture
 def api_client_authenticated():
@@ -85,16 +94,6 @@ def valid_product_data():
     }
 
 
-@pytest.fixture
-def valid_brand_data():
-
-    return {
-        "id": "01KDG94BGG8XGAAZNZA60VME5Z",
-        "name": "ForgeFlex Tools",
-        "slug": "forgeflex-tools",
-
-    }
-
 
 @pytest.fixture
 def valid_category_data():
@@ -105,26 +104,6 @@ def valid_category_data():
         "slug": "hand-tools"
     }
 
-
-# @pytest.fixture
-# def valid_contact_message_data():
-#
-#     return {
-#         "first_name": "John",
-#         "last_name": "Doe",
-#         "email": "john@example.com",
-#         "subject": "Test Subject",
-#         "body": "This is a test message"
-#     }
-
-
-# @pytest.fixture
-# def valid_cart_item_data():
-#
-#     return {
-#         "product_id": "1",
-#         "quantity": 2
-#     }
 
 @pytest.fixture
 def registered_user(api_client):
@@ -229,6 +208,46 @@ def authenticated_user(api_client):
 
 
         return user
+
+@pytest.fixture
+def new_cart_id(api_client):
+    with allure.step('Создание новой корзины'):
+        response = api_client.post("/carts")
+
+        allure.attach(body=response.request.method + " " + response.request.url, name="Request",
+                      attachment_type=AttachmentType.TEXT, extension="txt")
+        allure.attach(body=json.dumps(response.json(), indent=4, ensure_ascii=True), name="Response",
+                      attachment_type=AttachmentType.JSON, extension="json")
+
+        assert response.status_code == 201
+
+        cart = response.json()
+        CartValidator.validate_cart_response(cart)
+
+        cart_id = response.json()["id"]
+        return cart_id
+
+
+@pytest.fixture
+def ready_cart_with_items(api_client, woodsaw, hammer):
+
+    create_response = api_client.post("/carts")
+    assert create_response.status_code in [200, 201]
+    cart_id = create_response.json()["id"]
+
+    client = api_client
+
+    client.post(f"/carts/{cart_id}", json={"product_id": woodsaw.id, "quantity": 1})
+    client.post(f"/carts/{cart_id}", json={"product_id": hammer.id, "quantity": 1})
+
+    update_env_var(updates={"CART_ID": cart_id})
+
+    yield {
+        "id": cart_id,
+        "client": client,
+        "woodsaw_id": woodsaw.id,
+        "hammer_id": hammer.id
+    }
 
 
 def update_env_var(filename=".env.local", updates: dict = None):

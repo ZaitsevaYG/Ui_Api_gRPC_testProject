@@ -34,7 +34,6 @@ def test_product_details_check(page):
 
     with allure.step("Изменение количества товара + изменение цены"):
         cart_page.change_item_quantity()
-        attach_screenshot(cart_page.page)
         total_2_items = cart_page.cart_total.inner_text()
         total_2_items = parse_price(total_2_items)
         assert total_2_items != total_1_item

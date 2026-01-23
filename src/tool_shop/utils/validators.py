@@ -208,12 +208,8 @@ class CartValidator(ResponseValidator):
         return True
 
     @staticmethod
-    def validate_cart_item_payload(item: Dict) -> bool:
-
-        CartValidator.validate_required_fields(item, ["product_id", "quantity"])
-        CartValidator.validate_field_type(item, "product_id", str)
-        CartValidator.validate_field_type(item, "quantity", int)
-        CartValidator.validate_numeric(item["quantity"], min_val=1)
+    def validate_cart_item_payload(data: Dict) -> bool:
+        assert data.get("result") == "item added or updated", "Wrong result message"
         return True
 
 
@@ -248,91 +244,3 @@ class CategoryValidator(ResponseValidator):
         return True
 
 
-class InvoiceValidator(ResponseValidator):
-
-    @staticmethod
-    def validate_invoice_response(invoice: Dict) -> bool:
-
-        InvoiceValidator.validate_required_fields(
-            invoice,
-            ["id", "invoice_number", "user_id", "status", "total"]
-        )
-        InvoiceValidator.validate_enum(
-            invoice["status"],
-            ["AWAITING_FULFILLMENT", "ON_HOLD", "AWAITING_SHIPMENT", "SHIPPED", "COMPLETED"]
-        )
-        InvoiceValidator.validate_numeric(invoice["total"], min_val=0)
-        return True
-
-    @staticmethod
-    def validate_invoice_status(status: str) -> bool:
-
-        valid_statuses = [
-            "AWAITING_FULFILLMENT",
-            "ON_HOLD",
-            "AWAITING_SHIPMENT",
-            "SHIPPED",
-            "COMPLETED"
-        ]
-        InvoiceValidator.validate_enum(status, valid_statuses)
-        return True
-
-
-class FavoriteValidator(ResponseValidator):
-
-    @staticmethod
-    def validate_favorite_response(favorite: Dict) -> bool:
-
-        FavoriteValidator.validate_required_fields(
-            favorite,
-            ["id", "product_id", "user_id"]
-        )
-        return True
-
-    @staticmethod
-    def validate_favorite_request(favorite: Dict) -> bool:
-
-        FavoriteValidator.validate_required_fields(favorite, ["product_id"])
-        return True
-
-
-class PaymentValidator(ResponseValidator):
-
-    @staticmethod
-    def validate_payment_request(payment: Dict) -> bool:
-
-        PaymentValidator.validate_required_fields(
-            payment,
-            ["payment_method", "payment_details"]
-        )
-        valid_methods = [
-            "bank-transfer",
-            "cash-on-delivery",
-            "credit-card",
-            "buy-now-pay-later",
-            "gift-card"
-        ]
-        PaymentValidator.validate_enum(payment["payment_method"], valid_methods)
-        return True
-
-
-class ContactMessageValidator(ResponseValidator):
-
-    @staticmethod
-    def validate_contact_request(message: Dict) -> bool:
-
-        ContactMessageValidator.validate_required_fields(
-            message,
-            ["first_name", "email", "subject", "body"]
-        )
-        ContactMessageValidator.validate_email(message["email"])
-        return True
-
-    @staticmethod
-    def validate_contact_response(message: Dict) -> bool:
-
-        ContactMessageValidator.validate_required_fields(
-            message,
-            ["id", "first_name", "email", "subject", "body"]
-        )
-        return True
