@@ -54,10 +54,12 @@ class APIClient:
     with allure.step("API Request"):
         def put(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
 
+            if data is not None:
+                kwargs["json"] = data
+
             url = f"{self.base_url}{endpoint}"
             return requests.put(
                 url,
-                json=data,
                 headers=self._get_headers(),
                 timeout=self.timeout,
                 **kwargs
@@ -68,9 +70,11 @@ class APIClient:
 
             url = f"{self.base_url}{endpoint}"
 
+            if data is not None:
+                kwargs["json"] = data
+
             return requests.patch(
                 url,
-                json=data,
                 headers=self._get_headers(),
                 timeout=self.timeout,
                 **kwargs

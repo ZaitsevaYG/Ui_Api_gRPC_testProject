@@ -171,6 +171,11 @@ class UserValidator(ResponseValidator):
         return True
 
     @staticmethod
+    def validate_patch_success_response(data: Dict) -> bool:
+        assert data.get("success") is True, "PATCH should return success: true"
+        return True
+
+    @staticmethod
     def validate_user_request(user: Dict) -> bool:
 
         required_fields = ["email", "first_name", "last_name", "password"]

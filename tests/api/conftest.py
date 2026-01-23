@@ -1,3 +1,8 @@
+import json
+import os
+
+import allure
+from allure_commons.types import AttachmentType
 from faker import Faker
 import pytest
 
@@ -25,10 +30,10 @@ def api_client_authenticated():
 
     try:
         token_data = client.login(
-            email="customer@practicesoftwaretesting.com",
-            password="welcome01"
+            email="Scheldon@Cooper.example",
+            password="BigBangTheory1!"
         )
-        client.set_token(token_data["access_token"])
+        client.set_token(token_data["id"])
     except Exception as e:
         pytest.skip(f"Could not authenticate: {str(e)}")
 
@@ -121,6 +126,23 @@ def valid_category_data():
 #         "quantity": 2
 #     }
 
+@pytest.fixture
+def registered_user(api_client):
+
+    reg_data = {
+        "email": faker.email(),
+        "first_name": faker.first_name(),
+        "last_name": faker.last_name(),
+        "password": "TestPass123!@"
+    }
+
+    response = api_client.post("/users/register", json=reg_data)
+    assert response.status_code == 201
+
+    user = response.json()
+
+    return user
+
 
 @pytest.fixture
 def valid_payment_data():
@@ -165,3 +187,70 @@ def invalid_password_data():
         "last_name": "Simpson",
         "password": "weak"
     }
+
+@pytest.fixture
+def authenticated_user(api_client):
+
+    with allure.step('Регистрация нового пользователя'):
+        reg_data = {
+            "email": faker.email(),
+            "first_name": faker.first_name(),
+            "last_name": faker.last_name(),
+            "password": "TestPass123!@"
+        }
+
+        response = api_client.post("/users/register", json=reg_data)
+
+        allure.attach(body=response.request.method + " " + response.request.url, name="Request",
+                      attachment_type=AttachmentType.TEXT, extension="txt")
+        allure.attach(body=json.dumps(response.json(), indent=4, ensure_ascii=True), name="Response",
+                      attachment_type=AttachmentType.JSON, extension="json")
+
+        assert response.status_code == 201
+        user = response.json()
+
+        login_response = api_client.post("/users/login", json={
+            "email": reg_data["email"],
+            "password": reg_data["password"]
+        })
+        assert login_response.status_code == 200
+
+        token = login_response.json()["access_token"]
+
+        auth_client = APIClient(token=token)
+
+        yield {
+            "user": user,
+            "client": auth_client,
+            "token": token,
+            "email": reg_data["email"],
+            "password": reg_data["password"]
+        }
+
+
+        return user
+
+
+def update_env_var(filename=".env.local", updates: dict = None):
+
+    if updates is None:
+        updates = {}
+
+    env_vars = {}
+    if os.path.exists(filename):
+        with open(filename, "r") as f:
+            for line in f:
+                line = line.strip()
+                if "=" in line and not line.startswith("#"):
+                    key, value = line.split("=", 1)
+                    env_vars[key.strip()] = value.strip()
+
+
+    env_vars.update(updates)
+
+    with open(filename, "w") as f:
+        for key, value in env_vars.items():
+            f.write(f"{key}={value}\n")
+
+    for key, value in updates.items():
+        os.environ[key] = value
