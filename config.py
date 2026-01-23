@@ -5,7 +5,7 @@ load_dotenv()
 
 class Config:
     # API
-    API_BASE_URL = os.getenv("API_BASE_URL", "https://api.practicesoftwaretesting.com")
+    API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8091/")
     API_TOKEN = os.getenv("API_TOKEN", "")
     API_TIMEOUT = int(os.getenv("API_TIMEOUT", "30"))
 

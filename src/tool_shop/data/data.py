@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import Optional, List
 
 from config import Config
 
@@ -68,6 +68,7 @@ LONGNOSEPILERS = Product(
     brand="MightyCraft Hardware",
     id="01KDG94CMMFR85Q8A0S4Z6PT2A"
 )
+
 
 
 @dataclass

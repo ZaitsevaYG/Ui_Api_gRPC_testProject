@@ -23,3 +23,4 @@ def attach_screenshot(page: Page, name: str = "Скриншот"):
         name=name,
         attachment_type=allure.attachment_type.JPG
     )
+

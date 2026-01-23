@@ -124,7 +124,7 @@ class ProductValidator(ResponseValidator):
 
         ProductValidator.validate_required_fields(
             product,
-            ["id", "name", "description", "price", "brand_id", "category_id"]
+            ["id", "name", "description", "price", "brand", "category"]
         )
         ProductValidator.validate_field_type(product, "id", str)
         ProductValidator.validate_field_type(product, "name", str)
@@ -189,7 +189,7 @@ class UserValidator(ResponseValidator):
             ["access_token", "token_type", "expires_in"]
         )
         UserValidator.validate_string_not_empty(token_data["access_token"])
-        assert token_data["token_type"] == "Bearer", "Invalid token type"
+        assert token_data["token_type"] == "bearer", "Invalid token type"
         return True
 
 

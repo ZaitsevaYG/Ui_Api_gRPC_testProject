@@ -1,4 +1,4 @@
-
+import allure
 import requests
 from typing import Dict, Any
 from config import Config
@@ -11,6 +11,7 @@ class APIClient:
         self.token = token or Config.API_TOKEN
         self.timeout = Config.API_TIMEOUT
 
+
     def _get_headers(self, **kwargs) -> Dict[str, str]:
 
         headers = {
@@ -21,73 +22,70 @@ class APIClient:
         headers.update(kwargs)
         return headers
 
-    def get(self, endpoint: str, params: Dict[str, Any] = None, **kwargs) -> requests.Response:
+    with allure.step("API Request"):
+        def get(self, endpoint: str, params: Dict[str, Any] = None, **kwargs) -> requests.Response:
 
-        url = f"{self.base_url}{endpoint}"
-        return requests.get(
-            url,
-            headers=self._get_headers(),
-            params=params,
-            timeout=self.timeout,
-            **kwargs
-        )
+            url = f"{self.base_url}{endpoint}"
+            return requests.get(
+                url,
+                headers=self._get_headers(),
+                params=params,
+                timeout=self.timeout,
+                **kwargs
+            )
+    with allure.step("API Request"):
+        def post(self, endpoint: str, data: Dict[str, Any] = None, files=None, **kwargs) -> requests.Response:
+            url = f"{self.base_url}{endpoint}"
 
-    def post(self, endpoint: str, data: Dict[str, Any] = None, files=None, **kwargs) -> requests.Response:
+            if files:
+                headers = {k: v for k, v in self._get_headers().items() if k != "Content-Type"}
+                return requests.post(url, headers=headers, data=data, files=files, timeout=self.timeout, **kwargs)
 
-        url = f"{self.base_url}{endpoint}"
 
-        if files:
+            if data is not None:
+                kwargs["json"] = data
 
-            headers = {k: v for k, v in self._get_headers().items()
-                       if k != "Content-Type"}
             return requests.post(
                 url,
-                headers=headers,
-                data=data,
-                files=files,
+                headers=self._get_headers(),
+                timeout=self.timeout,
+                **kwargs)
+
+    with allure.step("API Request"):
+        def put(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
+
+            url = f"{self.base_url}{endpoint}"
+            return requests.put(
+                url,
+                json=data,
+                headers=self._get_headers(),
                 timeout=self.timeout,
                 **kwargs
             )
 
-        return requests.post(
-            url,
-            json=data,
-            headers=self._get_headers(),
-            timeout=self.timeout,
-            **kwargs
-        )
+    with allure.step("API Request"):
+        def patch(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
 
-    def put(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
+            url = f"{self.base_url}{endpoint}"
 
-        url = f"{self.base_url}{endpoint}"
-        return requests.put(
-            url,
-            json=data,
-            headers=self._get_headers(),
-            timeout=self.timeout,
-            **kwargs
-        )
+            return requests.patch(
+                url,
+                json=data,
+                headers=self._get_headers(),
+                timeout=self.timeout,
+                **kwargs
+            )
 
-    def patch(self, endpoint: str, data: Dict[str, Any] = None, **kwargs) -> requests.Response:
+    with allure.step("API Request"):
+        def delete(self, endpoint: str, **kwargs) -> requests.Response:
 
-        url = f"{self.base_url}{endpoint}"
-        return requests.patch(
-            url,
-            json=data,
-            headers=self._get_headers(),
-            timeout=self.timeout,
-            **kwargs
-        )
-
-    def delete(self, endpoint: str, **kwargs) -> requests.Response:
-
-        url = f"{self.base_url}{endpoint}"
-        return requests.delete(
-            url,
-            headers=self._get_headers(),
-            timeout=self.timeout,
-            **kwargs
-        )
+            url = f"{self.base_url}{endpoint}"
+            return requests.delete(
+                url,
+                headers=self._get_headers(),
+                timeout=self.timeout,
+                **kwargs
+            )
 
 
 class AuthAPIClient(APIClient):
