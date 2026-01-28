@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="sing in page tests">
-      <change afterPath="$PROJECT_DIR$/tests/gRPC/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/gRPC/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/grpc/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/conftest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/grpc/grpc_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/grpc_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/grpc/product_pb2_grpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/product_pb2_grpc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/grpc/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/grpc/test_grpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/test_grpc.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

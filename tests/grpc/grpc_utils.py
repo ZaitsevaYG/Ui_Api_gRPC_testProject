@@ -10,9 +10,9 @@ def log_grpc_request(method_name: str, request):
 
     request_json = MessageToJson(
         request,
-        ensuring_ascii=False,
+        ensure_ascii=False,
         indent=2,
-        including_default_value_fields=True
+
     )
 
 
@@ -23,7 +23,7 @@ def log_grpc_request(method_name: str, request):
     )
 
 
-    request_text = f"Метод: {method_name}\n{str(request)}"
+    request_text = f"Метод: {method_name}\nДанные: {MessageToDict(request, preserving_proto_field_name=True)}"
     attach(
         body=request_text,
         name=f"Кратко: {method_name}",
@@ -39,9 +39,8 @@ def log_grpc_response(method_name: str, response):
 
     response_json = MessageToJson(
         response,
-        ensuring_ascii=False,
+        ensure_ascii=False,
         indent=2,
-        including_default_value_fields=True
     )
 
     attach(
@@ -51,7 +50,12 @@ def log_grpc_response(method_name: str, response):
     )
 
 
-    summary = f"ID: {getattr(response, 'id', 'N/A')} | Название: {getattr(response, 'name', 'N/A')}"
+    summary = (
+        f"ID: {getattr(response, 'id', 'N/A')} | "
+        f"Название: {getattr(response, 'name', 'N/A')} | "
+        f"Цена: ${getattr(response, 'price', 0):.2f} | "
+        f"Аренда: {'Да' if getattr(response, 'is_rental', False) else 'Нет'}"
+    )
     attach(
         body=summary,
         name=f"Сводка: {method_name}",

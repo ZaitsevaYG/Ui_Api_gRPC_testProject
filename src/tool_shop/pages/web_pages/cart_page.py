@@ -149,6 +149,7 @@ class CartPage:
             self.proceed_to_checkout_guest.click(timeout=6000)
 
     def price_math(self, expected_items: int):
+        self.page.wait_for_timeout(10000)
         expect(self.rows).to_have_count(expected_items)
         calculated_total = 0.0
 

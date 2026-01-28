@@ -1,6 +1,6 @@
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))  # Корень проекта
+sys.path.insert(0, str(Path(__file__).parent))
 # ===================================================
 
 import grpc
@@ -23,16 +23,19 @@ PRODUCTS = {
 
 class ProductServiceImpl(product_pb2_grpc.ProductServiceServicer):
     def GetProduct(self, request, context):
-        print(f"Получен запрос: GetProduct(id={request.id})")
+        print(f"📥GetProduct(id={request.id})")
+
+        if request.id <= 0:
+            context.set_code(grpc.StatusCode.INVALID_ARGUMENT)
+            context.set_details(f"ID продукта должен быть положительным числом, получено: {request.id}")
+            return product_pb2.GetProductResponse()
 
         if request.id not in PRODUCTS:
             context.set_code(grpc.StatusCode.NOT_FOUND)
-            context.set_details(f"Продукт с ID={request.id} не найден")
+            context.set_details(f"Продукт #{request.id} не найден")
             return product_pb2.GetProductResponse()
 
-        product = PRODUCTS[request.id]
-        print(f"Отправляю ответ: {product.name} (${product.price})")
-        return product
+        return PRODUCTS[request.id]
 
 
 def serve():
