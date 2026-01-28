@@ -1,16 +1,11 @@
 import allure
-import testit
 from playwright.sync_api import expect
-
 from tool_shop.data.data import THORHUMMER, LONGNOSEPILERS
 from tool_shop.data.helpers import attach_screenshot
-
 from tool_shop.pages.web_pages.main_page import MainPage
 from tool_shop.pages.web_pages.product_page import ProductPage
 
 
-@testit.externalId("UI-6")
-@testit.displayName("Отображение элементов на странице товара")
 @allure.title("UI-6: Проверка отображения данных о товаре на странице продукта")
 @allure.tag('product', 'ui',)
 @allure.feature("Продукт: Действия с товаром")
@@ -27,8 +22,7 @@ def test_product_description_page_check(page):
         product_page.check_co2_rating()
         attach_screenshot(page, "Страница с данными товара")
 
-@testit.externalId("UI-7")
-@testit.displayName("Добавление товара в корзину")
+
 @allure.title("UI-7: Проверка функции добавления товара в корзину")
 @allure.tag('product', 'ui', 'card')
 @allure.feature("Продукт: Действия с товаром")
@@ -39,8 +33,7 @@ def test_add_to_cart(product_page):
         attach_screenshot(product_page.page, "Товар добавлен в корзину")
 
 
-@testit.externalId("UI-17")
-@testit.displayName("Добавление товара в корзину")
+
 @allure.title("UI-17: Проверка функции невозможности добавления товара 'Out of stock' в корзину")
 @allure.tag('product', 'ui')
 @allure.feature("Продукт: Действия с товаром")
@@ -56,8 +49,7 @@ def test_out_of_stock_item (page):
         expect(product_page.add_to_card_btn).to_be_disabled()
         attach_screenshot(product_page.page)
 
-@testit.externalId("UI-18")
-@testit.displayName("Добавление товара в избранное")
+
 @allure.title("UI-17: Проверка функции невозможности добавления товара в избранное неавторизованным пользовтаелем")
 @allure.tag('product', 'ui')
 @allure.feature("Продукт: Действия с товаром")

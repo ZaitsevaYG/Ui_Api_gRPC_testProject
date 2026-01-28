@@ -1,7 +1,6 @@
 import time
 
 import allure
-import testit
 from playwright.sync_api import expect
 from tool_shop.data.data import THORHUMMER,  WOODSAW, MEASURINGTAPE
 from tool_shop.data.helpers import attach_screenshot, parse_price
@@ -10,8 +9,7 @@ from tool_shop.pages.web_pages.product_page import ProductPage
 
 
 
-@testit.externalId("UI-14")
-@testit.displayName("Проверка данных + цены о товаре в корзине")
+
 @allure.title("UI-14: Проверка отображения данных о товаре + цены в корзине")
 @allure.tag('ui', 'cart')
 @allure.feature("Корзина")
@@ -39,8 +37,7 @@ def test_product_details_check(page):
         assert total_2_items != total_1_item
 
 
-@testit.externalId("UI-15")
-@testit.displayName("Удаление товара из корзины: 2 товара + перерасчет цены")
+
 @allure.title("UI-15: Проверка удаления товара из корзины: 2 товара + перерасчет цены")
 @allure.tag('ui', 'cart')
 @allure.feature("Корзина")
@@ -77,8 +74,7 @@ def test_delete_1_item_price_check(page):
         assert total_2_items != total_1_item
 
 
-@testit.externalId("UI-16")
-@testit.displayName("Удаление всех товаров из корзины")
+
 @allure.title("UI-16: Проверка удаления всех товаров из корзины")
 @allure.tag('ui', 'cart')
 @allure.feature("Корзина")

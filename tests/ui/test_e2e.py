@@ -1,18 +1,15 @@
 import time
 
 import allure
-import testit
-from playwright.sync_api import Page, expect
+from playwright.sync_api import expect
 from tool_shop.data.data import THORHUMMER, TESTUSER1, WOODSAW, GUESTUSER, MEASURINGTAPE
-from tool_shop.data.helpers import attach_screenshot, parse_price
+from tool_shop.data.helpers import attach_screenshot
 from tool_shop.pages.web_pages.cart_page import CartPage
 from tool_shop.pages.web_pages.favorites_page import FavoritesPage
 from tool_shop.pages.web_pages.product_page import ProductPage
 from tool_shop.pages.web_pages.sing_in_page import SingInPage
 
 
-@testit.externalId("UI-8")
-@testit.displayName("Добавление товара в избранное")
 @allure.title("UI-8: Проверка функции добавления товара в избранное")
 @allure.tag('product', 'ui', 'favorites')
 @allure.feature("Действия с товаром")
@@ -31,8 +28,6 @@ def test_add_to_favorites_e2e(page):
     product_page = ProductPage(page, THORHUMMER)
     product_page.navigate()
 
-    # Избранное
-
     product_page.add_to_favorites_and_check()
     product_page.go_to_favorites()
 
@@ -43,8 +38,6 @@ def test_add_to_favorites_e2e(page):
         fav_page.check_product_in_favorites_and_delete()
 
 
-@testit.externalId("UI-12")
-@testit.displayName("Оформление заказа зарегистрированным пользователем")
 @allure.title("UI-12: Проверка возможности оформить заказ зарегистрированным пользователем")
 @allure.tag('ui', 'cart')
 @allure.feature("Корзина")
@@ -73,8 +66,7 @@ def test_successful_checkout_logged_user_e2e(page):
         cart_page.billing_window(TESTUSER1)
         cart_page.payment_window_cash()
 
-@testit.externalId("UI-13")
-@testit.displayName("Оформление заказа пользователем-гостем")
+
 @allure.title("UI-13: Проверка возможности оформить заказ зарегистрированным пользователем-гостем")
 @allure.tag('ui', 'cart')
 @allure.feature("Корзина")

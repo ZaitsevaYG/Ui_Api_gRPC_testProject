@@ -1,13 +1,10 @@
 import allure
-import testit
 from playwright.sync_api import expect
 
 from tool_shop.data.data import SCREWS
 from tool_shop.data.helpers import attach_screenshot
 
 
-@testit.externalId("UI-1")
-@testit.displayName("Отображение списка товаров на главной странице")
 @allure.title("UI-1: Проверка отображения списка товаров на главной странице")
 @allure.tag('regress', 'ui', 'smoke')
 @allure.feature("Каталог товаров")
@@ -20,8 +17,6 @@ def test_product_visibility_main_page(main_page):
     attach_screenshot(main_page.page, "Главная страница после загрузки")
 
 
-@testit.externalId("UI-2")
-@testit.displayName("Поиск товара по названию")
 @allure.title("UI-2: Проверка отображения результатов поиска товара по названию")
 @allure.tag('search', 'ui')
 @allure.feature("Фильтрация и поиск")
@@ -34,8 +29,6 @@ def test_product_search_by_name(main_page):
     attach_screenshot(main_page.page, "Найден товар по названию")
 
 
-@testit.externalId("UI-3")
-@testit.displayName("Поиск товара по фильтру 'Эко-товары'")
 @allure.title("UI-3: Проверка отображения результатов поиска товаров по фильтру 'Эко-товары'")
 @allure.tag('search', 'ui', 'filter')
 @allure.feature("Фильтрация и поиск")
@@ -48,8 +41,6 @@ def test_product_search_by_filter_eco(main_page):
         attach_screenshot(main_page.page, "Найдены товары по по фильтру 'Эко-товары'")
 
 
-@testit.externalId("UI-4")
-@testit.displayName("Поиск товара по фильтру - цена + API проверка")
 @allure.title("UI-4: Проверка отображения результатов поиска товаров по цене в диапазоне от 15 до 28$")
 @allure.tag('search', 'ui', 'filter')
 @allure.feature("Фильтрация и поиск")
@@ -62,8 +53,6 @@ def test_product_search_price_range(main_page):
         attach_screenshot(main_page.page, "Товары, в ценовом диапазоне от 15 до 28$")
 
 
-@testit.externalId("UI-5")
-@testit.displayName("Проверка пагинации каталога")
 @allure.title("UI-5: Проверка пагинации каталога")
 @allure.tag( 'ui', 'navigation')
 @allure.feature("Каталог товаров")

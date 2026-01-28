@@ -1,16 +1,10 @@
 import json
-
 import allure
-import testit
 from allure_commons.types import AttachmentType
-
 from tool_shop.utils.api_client import APIClient
 from tool_shop.utils.validators import ResponseValidator, ProductValidator
 
 
-
-@testit.externalId("API-1")
-@testit.displayName("Получение всех товаров")
 @allure.title("API-1: Получение всех товаров")
 @allure.tag('api', 'product')
 @allure.feature("Продукт")
@@ -27,8 +21,7 @@ def test_get_all_products(api_client: APIClient):
     data = response.json()
     ProductValidator.validate_paginated_products(data)
 
-@testit.externalId("API-2")
-@testit.displayName("Получение товара по ID")
+
 @allure.title("API-2: Получение товара по ID")
 @allure.tag('api', 'product')
 @allure.feature("Продукт")
@@ -46,8 +39,6 @@ def test_get_product_by_id(api_client: APIClient, pilers):
     ProductValidator.validate_product_response(data)
 
 
-@testit.externalId("API-3")
-@testit.displayName("Получение товаров, отсортированных по цене")
 @allure.title("API-3: Получение товаров, отсортированных по цене")
 @allure.tag('api', 'product', 'filter')
 @allure.feature("Фильтрация и поиск")
@@ -68,8 +59,7 @@ def test_get_products_filtered_by_price(api_client: APIClient):
         assert 20 <= product["price"] <= 100
 
 
-@testit.externalId("API-4")
-@testit.displayName("Поиск товаров по названию")
+
 @allure.title("API-4: Поиск товаров по названию")
 @allure.tag('api', 'product', 'search')
 @allure.feature("Фильтрация и поиск")
@@ -88,8 +78,6 @@ def test_get_products_search_by_name(api_client: APIClient):
     ProductValidator.validate_paginated_products(data)
 
 
-@testit.externalId("API-5")
-@testit.displayName("Поиск связанных товаров")
 @allure.title("API-5: Поиск связанных товаров")
 @allure.tag('api', 'product', 'search')
 @allure.feature("Фильтрация и поиск")

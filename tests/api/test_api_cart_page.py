@@ -1,17 +1,10 @@
 import json
-import os
-
 import allure
-import testit
 from allure_commons.types import AttachmentType
-
 from tests.api.conftest import update_env_var
-from tool_shop.utils.api_client import APIClient, AuthAPIClient
-from tool_shop.utils.validators import ResponseValidator, UserValidator, CartValidator
+from tool_shop.utils.validators import CartValidator
 
 
-@testit.externalId("API-14")
-@testit.displayName("Добавить товары в корзину")
 @allure.title("API-14: Добавить товары в корзину")
 @allure.tag('api', 'cart')
 @allure.feature("Корзина")
@@ -52,8 +45,7 @@ def test_post_add_products_to_cart(api_client, new_cart_id, woodsaw, pilers):
     assert woodsaw.id !=pilers.id
 
 
-@testit.externalId("API-15")
-@testit.displayName("Получить данные корзины")
+
 @allure.title("API-15: Получить данные корзины")
 @allure.tag('api', 'cart')
 @allure.feature("Корзина")
@@ -78,8 +70,6 @@ def test_get_cart_info(ready_cart_with_items, woodsaw, hammer):
 
 
 
-@testit.externalId("API-16")
-@testit.displayName("Обновить количество товара в корзине")
 @allure.title("API-16: Обновить количество товара в корзине")
 @allure.tag('api', 'cart')
 @allure.feature("Корзина")
@@ -104,8 +94,6 @@ def test_put_change_item_quantity(ready_cart_with_items, woodsaw, hammer):
 
 
 
-@testit.externalId("API-17")
-@testit.displayName("Удалить товар из корзины")
 @allure.title("API-17: Удалить товар из корзины")
 @allure.tag('api', 'cart')
 @allure.feature("Корзина")

@@ -1,8 +1,6 @@
 import sys
 from pathlib import Path
 
-import testit
-
 sys.path.insert(0, str(Path(__file__).parent))
 # ===================================================
 
@@ -12,8 +10,6 @@ import product_pb2
 from tests.grpc.grpc_utils import log_grpc_request, log_grpc_response, log_grpc_error
 import allure
 
-@testit.externalId("GRPC-1")
-@testit.displayName("Успешное получение продукта по существующему ID")
 @allure.title("GRPC-1: Успешное получение продукта по существующему ID")
 @allure.description("Проверка метода GetProduct с валидным ID=1")
 @allure.tag('grpc')
@@ -34,8 +30,7 @@ def test_get_product_success(grpc_stub):
     assert response.price >= 0, f"Цена не может быть отрицательной: {response.price}"
     assert isinstance(response.is_rental, bool), "is_rental должен быть булевым типом"
 
-@testit.externalId("GRPC-2")
-@testit.displayName("Ошибка при запросе несуществующего продукта")
+
 @allure.title("GRPC-2: Ошибка при запросе несуществующего продукта")
 @allure.description("Сервер должен вернуть NOT_FOUND для несуществующего ID")
 @allure.tag('grpc')
@@ -57,8 +52,7 @@ def test_get_product_not_found(grpc_stub):
         f"Ожидался NOT_FOUND, получен {exc_info.value.code()}"
 
 
-@testit.externalId("GRPC-3")
-@testit.displayName("Валидация отрицательного ID")
+
 @allure.title("GRPC-3: Валидация отрицательного ID")
 @allure.description("Сервер должен отклонять отрицательные ID с ошибкой INVALID_ARGUMENT")
 @allure.tag('grpc')
@@ -81,8 +75,6 @@ def test_get_product_invalid_id(grpc_stub):
 
 
 @pytest.mark.parametrize("product_id", [1, 2, 3])
-@testit.externalId("GRPC-4")
-@testit.displayName("GRPC-4: Параметризованный тест для продуктов [ID={product_id}]")
 @allure.title("Параметризованный тест для продуктов [ID={product_id}]")
 @allure.description("Проверка получения нескольких продуктов из демо-базы")
 @allure.tag('grpc')

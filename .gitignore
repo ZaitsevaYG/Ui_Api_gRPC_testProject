@@ -68,7 +68,7 @@ yarn-error.log*
 # TestIT
 # =========================
 testit.ini
-testrun.json        # ← если генерируется локально
+testrun.json       # ← если генерируется локальн о
 
 # =========================
 # IDE & Editors

@@ -1,16 +1,11 @@
 import json
 import os
-
 import allure
-import testit
 from allure_commons.types import AttachmentType
-
 from tests.api.conftest import update_env_var
 from tool_shop.utils.api_client import APIClient, AuthAPIClient
-from tool_shop.utils.validators import ResponseValidator, UserValidator
+from tool_shop.utils.validators import  UserValidator
 
-@testit.externalId("API-6")
-@testit.displayName("Создание нового пользователя")
 @allure.title("API-6: Создание нового пользователя")
 @allure.tag('api', 'user')
 @allure.feature("Регистрация нового пользователя")
@@ -44,8 +39,6 @@ def test_post_create_new_user(api_client: APIClient, valid_user_registration_dat
     )
 
 
-@testit.externalId("API-7")
-@testit.displayName("Попытка регистрации с пустым полем email")
 @allure.title("API-7: Попытка регистрации с пустым полем email")
 @allure.tag('api', 'user')
 @allure.feature("Регистрация нового пользователя")
@@ -64,8 +57,6 @@ def test_post_register_invalid_email(api_client, empty_email_data):
     assert "email" in str(error_data).lower()
 
 
-@testit.externalId("API-8")
-@testit.displayName("Попытка регистрации с коротким паролем")
 @allure.title("API-8: Попытка регистрации с коротким паролем")
 @allure.tag('api', 'user')
 @allure.feature("Регистрация нового пользователя")
@@ -86,8 +77,6 @@ def test_post_register_short_password(api_client, invalid_password_data):
                for keyword in ["password", "at least", "uppercase", "lowercase", "symbol", "number"])
 
 
-@testit.externalId("API-9")
-@testit.displayName("Логин с валидными данными. Получение токена")
 @allure.title("API-9: Логин с валидными данными. Получение токена")
 @allure.tag('api', 'user')
 @allure.feature("Авторизация")
@@ -115,8 +104,6 @@ def test_post_successful_login(api_client: AuthAPIClient):
     UserValidator.validate_token_response(data)
 
 
-@testit.externalId("API-10")
-@testit.displayName("Частичное изменение данных пользователя - изменить адрес")
 @allure.title("API-10: Частичное изменение данных пользователя - изменить адрес")
 @allure.tag('api', 'user')
 @allure.feature("Пользователь")
@@ -169,8 +156,6 @@ def test_patch_change_user_data(authenticated_user):
         assert updated_user["last_name"] == user["last_name"]
 
 
-@testit.externalId("API-11")
-@testit.displayName("Попытка поменять данные с несуществующим id")
 @allure.title("API-11: Попытка поменять данные с несуществующим id")
 @allure.tag('api', 'user')
 @allure.feature("Пользователь")
@@ -194,8 +179,6 @@ def test_patch_change_unexisted_id(authenticated_user):
 
         assert response.status_code == 403
 
-@testit.externalId("API-12")
-@testit.displayName("Попытка поменять данные неавторизованным пользователем")
 @allure.title("API-12: Попытка поменять данные неавторизованным пользователем")
 @allure.tag('api', 'user')
 @allure.feature("Пользователь")
@@ -215,8 +198,6 @@ def test_patch_user_no_auth(api_client, registered_user):
     assert response.status_code == 401
 
 
-@testit.externalId("API-13")
-@testit.displayName("Попытка поменять данные другого пользователя авторизованным пользователем")
 @allure.title("API-13: Попытка поменять данные другого пользователя авторизованным пользователем")
 @allure.tag('api', 'user')
 @allure.feature("Пользователь")
