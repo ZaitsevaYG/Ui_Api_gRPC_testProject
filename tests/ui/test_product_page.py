@@ -50,7 +50,7 @@ def test_out_of_stock_item (page):
         attach_screenshot(product_page.page)
 
 
-@allure.title("UI-17: Проверка функции невозможности добавления товара в избранное неавторизованным пользовтаелем")
+@allure.title("UI-17: Проверка функции невозможности добавления товара в избранное неавторизованным пользователем")
 @allure.tag('product', 'ui')
 @allure.feature("Продукт: Действия с товаром")
 @allure.severity('medium')
