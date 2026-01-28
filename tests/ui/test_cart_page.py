@@ -68,6 +68,7 @@ def test_delete_1_item_price_check(page):
 
     with allure.step("Проверка перерасчета стоимости после удаления товара"):
         cart_page.price_math(1)
+        cart_page.page.wait_for_timeout(10000)
         attach_screenshot(cart_page.page)
         total_1_item = cart_page.cart_total.inner_text()
         total_1_item = parse_price(total_1_item)
