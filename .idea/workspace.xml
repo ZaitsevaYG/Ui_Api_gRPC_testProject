@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="sing in page tests">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/ui/test_cart_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/gRPC/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/gRPC/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool_shop/data/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/data/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool_shop/data/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/data/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool_shop/pages/web_pages/cart_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/pages/web_pages/cart_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ui/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ui/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/ui/test_sing_in_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ui/test_sing_in_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,21 +47,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for test_e2e.test_search_from_main.executor": "Run",
-    "Python tests.Python tests for test_main_page.test_search_from_main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/PC/PycharmProjects/Tool_shop"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_e2e.test_search_from_main.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_main_page.test_search_from_main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/PycharmProjects/Tool_shop&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_search_from_main">
     <configuration name="Python tests for test_e2e.test_search_from_main" type="tests" factoryName="Autodetect" nameIsGenerated="true">
       <module name="Tool_shop" />
