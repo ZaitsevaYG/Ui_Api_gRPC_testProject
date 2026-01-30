@@ -93,7 +93,9 @@ TESTUSER1 = User(
     state='Texas',
     country='USA',
     postcode='64154',
-    full_name='Jane Doe'
+    full_name='Jane Doe',
+    first_name = 'Jane',
+    last_name = 'Doe'
 )
 
 
@@ -113,4 +115,14 @@ GUESTUSER = User(
     state='New York',
     country='USA',
     postcode='87564'
+)
+
+WRONGMAIL = User(
+    email='mail',
+    password='qwerty'
+)
+
+SHORTPASSWORD = User(
+    email='customer@practicesoftwaretesting.com',
+    password='qwe12'
 )

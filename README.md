@@ -7,7 +7,9 @@
 <img src="src/tool_shop/data/rm_data/icons/python-original.svg" width="50"> <img src="src/tool_shop/data/rm_data/icons/pytest.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/intellij_pycharm.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/grpc.png" width="90"> <img src="src/tool_shop/data/rm_data/icons/playwright_logo.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/docker_docker_compose.png" width="90"> <img src="src/tool_shop/data/rm_data/icons/allure_report.png" width="50"> <img src="data/rm_design/icons/appium_logo.png" width="50"> <img src="data/rm_design/icons/android_logo.png" width="50">
 
 
-Проект основан на учебном приложении <a href="https://github.com/testsmith-io/practice-software-testing.git">TestSmith Practice Software Testing</a> - интернет-магазине инструментов с трёхслойной архитектурой (UI + REST API + gRPC).
+Проект основан на учебном приложении <a href="https://github.com/testsmith-io/practice-software-testing.git">TestSmith Practice Software Testing</a> - интернет-магазине инструментов с трёхслойной архитектурой (UI + REST API + gRPC). 
+Плюс имеется мобильное приложение как для iOS, так и для Android.
+
 ## Запуск приложения
 ### Требования
 |  Компонент       | Версия     |              Установка              |
