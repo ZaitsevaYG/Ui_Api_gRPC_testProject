@@ -1,17 +1,32 @@
-<h1> Проект по тестированию демо-проекта "Tool Shop"</h1>
+<h1> Автотестирование Tool Shop: UI, API, gRPC и Android"</h1>
 
 ![This is an image](src/tool_shop/data/rm_data/Tool_Shop_page.png)
 
-Проект основан на учебном приложении <a href="https://github.com/testsmith-io/practice-software-testing.git">TestSmith Practice Software Testing</a> - интернет-магазине инструментов с трёхслойной архитектурой (UI + REST API + gRPC).
-Также имеется мобильное приложение для iOS и <a href="https://testsmith.ams3.cdn.digitaloceanspaces.com/artifacts/practice-software-testing.apk">Android</a>.
-В данном проекте я тестировала приложение для Android - как локально на физическом устройстве, так и через BrowserStack
+Проект для портфолио: Полное покрытие тестами интернет-магазина инструментов из <a href="https://github.com/testsmith-io/practice-software-testing.git">TestSmith Practice Software Testing</a> - интернет-магазине инструментов с трёхслойной архитектурой (UI + REST API + gRPC).
+Также имеется мобильное приложение для <a href="https://testsmith.ams3.cdn.digitaloceanspaces.com/artifacts/practice-software-testing.ipa">iOS</a> и <a href="https://testsmith.ams3.cdn.digitaloceanspaces.com/artifacts/practice-software-testing.apk">Android</a>.
+
+Тестировала Android-приложение локально на устройстве и через BrowserStack. 
+Покрыла UI (Playwright), API (requests), gRPC (grpcio), мобилку (Appium + Selene). Всё на pytest с Allure-отчётами.
 
 ----
 ### Проект реализован с использованием:
 <img src="src/tool_shop/data/rm_data/icons/python-original.svg" width="50"> <img src="src/tool_shop/data/rm_data/icons/pytest.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/intellij_pycharm.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/grpc.png" width="90"> <img src="src/tool_shop/data/rm_data/icons/playwright_logo.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/docker_docker_compose.png" width="90"> <img src="src/tool_shop/data/rm_data/icons/allure_report.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/appium_logo.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/android_logo.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/selene_logo.png" width="50"> <img src="src/tool_shop/data/rm_data/icons/BrowserStack_logo.png" width="50">
 
 
-## Запуск приложения
+### Технологический стек
+| Тип тестов                    | Инструменты         |
+|-------------------------------|---------------------|
+| **UI**                        | Playwright + pytest |
+| **API**                       | requests + pytest   |
+| **gRPC**                      | grpcio + pytest     |
+| **Android**                   | Appium + Selene     |
+| **Отчёты**                    | Allure              |
+| **Управление зависимостями**  | Poetry              |
+| **Контейнеризация**           | Docker Compose      |
+
+
+
+## Быстрый запуск
 ### Требования
 |  Компонент       | Версия     |              Установка              |
 |:-----------------|:----------:|:-----------------------------------:|
@@ -22,90 +37,57 @@
 
 ### Запуск тестируемого приложения
 
-Клонируем официальный репозиторий приложения
 ```bash
 git clone https://github.com/testsmith-io/practice-software-testing.git
 cd practice-software-testing
+docker compose up -d  # Проверяем: UI на http://localhost:4200, Swagger на http://localhost:8091/api/documentation
 ```
-Запускаем все сервисы через Docker Compose
+Запуск gRPC сервера для тестирования
 ```bash
-docker-compose up -d
+cd ../Tool_shop 
+python -m tests.grpc.server
 ```
 
-### Проверка работоспособности
-| Сервис       |                       URL                        |                Описание                 |
-|:-------------|:------------------------------------------------:|:---------------------------------------:|
-| UI           |              http://localhost:4200               |         Веб-интерфейс магазина          |
-| API Docs     |     http://localhost:8091/api/documentation      |      Swagger UI для REST API            |
-| gRPC         |          http://localhost:50051                  | gRPC endpoint (проверяется через тесты) |
-
-### Настройка тестового окружения
+Настройка тестов
 ```bash
-# Вернись в папку с тестами
-cd ../Tool_shop
-
-# Установи зависимости через Poetry
+cd ../Tool_shop  
 poetry install
-
-# Активируй виртуальное окружение
 poetry shell
+
 ```
+Прогон тестов
+```bash
+pytest tests/ui/     # Или pytest tests/ для всего
+allure serve   # Отчёты
+```
+## Реализованные тесты (100% passed)
+
+### UI-тесты (Playwright, 17 тестов)
+
+- [x] Главная, поиск, фильтры, пагинация
+- [x] Логин/аутентификация (валид/инвалид)
+- [x] Корзина: добавление, удаление, расчёт цены
+- [x] Избранное, оформление заказа (гость/пользователь)
+
+### API-тесты  (requests, 17 тестов)
+
+- [x] CRUD товары/пользователи/корзина
+- [x] Валидация (пустые поля, короткий пароль)
+- [x] Авторизация, токены, права доступа
 
 
-### UI-тесты
+### gRPC-тесты (grpcio, 4 теста)
 
-- [x] Проверка отображения списка товаров на главной странице
-- [x] Проверка отображения результатов поиска товара по названию
-- [x] Проверка отображения результатов поиска товаров по фильтру 'Эко-товары'
-- [x] Проверка отображения результатов поиска товаров по цене в диапазоне от 15 до 28$
-- [x] Проверка пагинации каталога
-- [x] Проверка возможности залогиниться с действительными почтой и паролем
-- [x] Проверка невозможности залогиниться с несуществующими в базе почтой и паролем
-- [x] Проверка отображения данных о товаре на странице продукта
-- [x] Проверка функции добавления товара в корзину
-- [x] Проверка функции невозможности добавления товара 'Out of stock' в корзину
-- [x] Проверка функции невозможности добавления товара в избранное неавторизованным пользователем
-- [x] Проверка отображения данных о товаре + цены в корзине
-- [x] Проверка удаления товара из корзины: 2 товара + перерасчет цены
-- [x] Проверка удаления всех товаров из корзины
-- [x] Проверка функции добавления товара в избранное
-- [x] Проверка возможности оформить заказ зарегистрированным пользователем
-- [x] Проверка возможности оформить заказ зарегистрированным пользователем-гостем
+- [x] Получение продуктов, ошибки, валидация ID
 
-### API-тесты
-
-- [x] Получение всех товаров
-- [x] Получение товара по ID
-- [x] Получение товаров, отсортированных по цене
-- [x] Поиск товаров по названию
-- [x] Поиск связанных товаров
-- [x] Создание нового пользователя
-- [x] Попытка регистрации с пустым полем email
-- [x] Попытка регистрации с коротким паролем
-- [x] Логин с валидными данными. Получение токена
-- [x] Частичное изменение данных пользователя - изменить адрес
-- [x] Попытка поменять данные с несуществующим id
-- [x] Попытка поменять данные неавторизованным пользователем
-- [x] Попытка поменять данные другого пользователя авторизованным пользователем
-- [x] Добавить товары в корзину
-- [x] Получить данные корзины
-- [x] Обновить количество товара в корзине
-- [x] Удалить товар из корзины
-
-### gRPC-тесты
-
-- [x] Успешное получение продукта по существующему ID
-- [x] Ошибка при запросе несуществующего продукта
-- [x] Валидация отрицательного ID
-- [x] Проверка получения нескольких продуктов из демо-базы
-
+### Android (Appium + Selene, BrowserStack + локально)
+- [x] Полный функционал app (UI, корзина, заказы)
 
 ### Результат прогона тестов (прогон мобильных тестов производился локально, на подключенном к компьютеру устройстве)
 ![This is an image](src/tool_shop/data/rm_data/run_tests.png)
 
 ### Результат прогона мобильных тестов через BrowserStack 
 ![This is an image](src/tool_shop/data/rm_data/browserstack_tests_run.png)
-
 
 ----
 ### Allure отчет
@@ -126,3 +108,7 @@ poetry shell
 
 ### Пример видео прохождения mobile-автотестoв
 ![autotest_gif](src/tool_shop/data/rm_data/mobile_test_video.gif)
+
+
+Репозиторий: github.com/ZaitsevaYG/Ui_Api_gRPC_testProject
+Контакты: zaitseva.yg@gmail.com / @ZaitsevaYana (Telegram)
