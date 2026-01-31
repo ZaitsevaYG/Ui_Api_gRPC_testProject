@@ -69,7 +69,7 @@ allure serve  # Отчёты
 
 
 ### Результат прогона тестов (прогон мобильных тестов производился локально, на подключенном к компьютеру устройстве)
-![This is an image](src/tool_shop/data/rm_data/run_tests.png)
+![This is an image](src/tool_shop/data/rm_data/run_all_tests.png)
 
 ### Результат прогона мобильных тестов через BrowserStack 
 ![This is an image](src/tool_shop/data/rm_data/browserstack_tests_run.png)
