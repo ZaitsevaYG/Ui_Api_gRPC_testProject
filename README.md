@@ -94,5 +94,7 @@ allure serve  # Отчёты
 ### Пример видео прохождения mobile-автотестoв
 ![autotest_gif](src/tool_shop/data/rm_data/mobile_test_video.gif)
 
-Репозиторий: github.com/ZaitsevaYG/Ui_Api_gRPC_testProject
-Контакты: zaitseva.yg@gmail.com / @ZaitsevaYana (Telegram)
+----
+
+**Репозиторий**: [github.com/ZaitsevaYG/Ui_Api_gRPC_testProject]([https://github.com/ZaitsevaYG/Ui_Api_gRPC_testProject/])<br>
+**Контакты**: [zaitseva.yg@gmail.com/Telegram @ZaitsevaYana]
