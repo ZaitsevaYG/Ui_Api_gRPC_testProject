@@ -35,23 +35,33 @@ class AppMainPage:
 
         browser.element((AppiumBy.ACCESSIBILITY_ID,"product-title")).with_(timeout=30).should(have.text('Thor Hammer'))
 
-
     @allure.step("Добавление товара в корзину")
     def add_item_to_cart_and_check(self):
+        current_value = 0
+
         cart = browser.element(self.cart_quantity).with_(timeout=3)
+        if cart.wait_until(be.present):
 
-        if cart.wait_until(be.absent):
-            browser.element(self.add_to_cart_btn).should(be.clickable).click()
-            browser.element(self.cart_quantity).with_(timeout=10).should(be.visible.and_(have.text("1")))
-        else:
+            current_text = cart.locate().text.strip()
+            if current_text.isdigit():
+                current_value = int(current_text)
 
-            current_value = int(cart.locate().text)
-            expected_value = current_value + 1
+            else:
+                current_value = 0
 
-            browser.element(self.add_to_cart_btn).should(be.clickable).click()
-            browser.element(self.cart_quantity).with_(timeout=10).should(have.text(str(expected_value)))
+        attach_mobile_screenshot(f"До добавления")
 
-        attach_mobile_screenshot("После добавления товара в корзину")
+        browser.element(self.add_to_cart_btn) \
+            .with_(timeout=8) \
+            .should(be.clickable) \
+            .click()
+        expected_value = current_value + 1
+        browser.element(self.cart_quantity) \
+            .with_(timeout=12) \
+            .should(be.visible.and_(have.text(str(expected_value))))
+
+        attach_mobile_screenshot(f"После добавления: корзина = {expected_value}")
+
 
     @allure.step("Переход в корзину")
     def go_to_cart(self):

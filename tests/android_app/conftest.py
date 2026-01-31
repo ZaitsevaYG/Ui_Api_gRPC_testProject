@@ -43,11 +43,17 @@ from tool_shop.data.helpers import attach_bstack_video
 
 @pytest.fixture(scope='function', autouse=True)
 def android_mobile_management():
+    browser.config.driver = None
     options = UiAutomator2Options().load_capabilities({
         "platformName": "Android",
-        "platformVersion": "13.0",
-        "deviceName": "OnePlus 11R",
+        "platformVersion": "14.0",
+        "deviceName": "Google Pixel 8 Pro",
         "app": "bs://7f72b4ebe2cb7bf50806cda4b014685802184572",
+        "appWaitActivity": "*",
+
+        "noReset": False,
+        "fullReset": False,
+        "autoGrantPermissions": True,  #
 
         'bstack:options': {
             "projectName": "ToolShop test automation",
@@ -59,10 +65,10 @@ def android_mobile_management():
         }
     })
 
-    browser.config.driver = webdriver.Remote("http://hub.browserstack.com/wd/hub",
-                                             options=options)
+    driver = webdriver.Remote("http://hub.browserstack.com/wd/hub", options=options)
+    browser.config.driver = driver
 
-    browser.config.timeout = float(os.getenv('timeout', '10.0'))
+    browser.config.timeout = float(os.getenv('timeout', '15.0'))
 
     browser.config._wait_decorator = support._logging.wait_with(
         context=allure_commons._allure.StepContext
@@ -86,6 +92,8 @@ def android_mobile_management():
     )
 
     with allure.step('tear down app session'):
-        browser.quit()
+        driver.terminate_app("io.testsmith.practicesoftwaretesting")
+        driver.quit()
+        browser.config.driver = None
 
     attach_bstack_video(session_id)

@@ -4,12 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="sing in page tests">
-      <change beforePath="$PROJECT_DIR$/tests/grpc/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/grpc/grpc_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/grpc_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/grpc/product_pb2_grpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/product_pb2_grpc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/grpc/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/grpc/test_grpc.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/grpc/test_grpc.py" afterDir="false" />
+    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/allur_all.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/browserstack_tests_run.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/icons/BrowserStack_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/icons/selene_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/mobile_test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tool_shop/pages/android_app_pages/app_main_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/pages/android_app_pages/app_main_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/android_app/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/android_app/conftest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +66,12 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/PC/PycharmProjects/Tool_shop&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\PC\PycharmProjects\Tool_shop\src\tool_shop\data\rm_data\icons" />
+      <recent name="C:\Users\PC\PycharmProjects\Tool_shop\src\tool_shop\data\rm_data" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_search_from_main">
     <configuration name="Python tests for test_e2e.test_search_from_main" type="tests" factoryName="Autodetect" nameIsGenerated="true">
       <module name="Tool_shop" />
@@ -221,8 +231,39 @@
       <option name="project" value="LOCAL" />
       <updated>1768913656079</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
+      <option name="closed" value="true" />
+      <created>1769786015443</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1769786015443</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first steps" />
@@ -231,6 +272,8 @@
     <MESSAGE value="favorites page&#10;sing in page&#10;e2e tests&#10;product page tests" />
     <MESSAGE value="poetry changes + favorites page + sing in page + e2e tests page + changes" />
     <MESSAGE value="sing in page tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="sing in page tests" />
+    <MESSAGE value="Readme + mobile app tests + browserstack configuration" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
   </component>
 </project>
