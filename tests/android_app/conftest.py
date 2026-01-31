@@ -9,15 +9,16 @@ from tool_shop.data.helpers import attach_bstack_video
 
 
 # Для прогона на реальном девайсе, подключенным к компу
+# apk_path = Path(__file__).parent.parent.parent / 'data' / 'practice-software-testing.apk'
 #
 # @pytest.fixture(scope='function', autouse=True)
 # def android_mobile_management():
 #     options = UiAutomator2Options().load_capabilities({
 #         "platformName": "Android",
-#         "deviceName": "JMS_L09",
+#         "deviceName": "JMS_L09", <- указать название своего подключенного девайса
 #         "appActivity": "io.testsmith.practicesoftwaretesting.MainActivity",
 #         "appPackage": "io.testsmith.practicesoftwaretesting",
-#         "app": "C:/Users/PC/Downloads/practice-software-testing.apk"
+#         "app": str(apk_path)
 #     })
 #
 #     browser.config.driver = webdriver.Remote(
@@ -53,15 +54,15 @@ def android_mobile_management():
 
         "noReset": False,
         "fullReset": False,
-        "autoGrantPermissions": True,  #
+        "autoGrantPermissions": True,
 
         'bstack:options': {
             "projectName": "ToolShop test automation",
             "buildName": "browserstack-build-1",
             "sessionName": "BStack auto",
 
-            "userName": "janazaitseva_ckHfp4",
-            "accessKey": "ULcqpKU4NxAupDncjgJV",
+            "userName": config.BSTACK_USERNAME,
+            "accessKey": config.BSTACK_ACCESSKEY
         }
     })
 

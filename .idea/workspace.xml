@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md">
-      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/allur_all.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/browserstack_tests_run.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/icons/BrowserStack_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/icons/selene_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/tool_shop/data/rm_data/mobile_test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tool_shop/pages/android_app_pages/app_main_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tool_shop/pages/android_app_pages/app_main_page.py" afterDir="false" />
+    <list default="true" id="26c1ab57-9c15-4d6b-9e88-2ebe6f2936f6" name="Changes" comment="Readme">
       <change beforePath="$PROJECT_DIR$/tests/android_app/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/android_app/conftest.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -68,8 +60,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\PC\PycharmProjects\Tool_shop\src\tool_shop\data\rm_data\icons" />
       <recent name="C:\Users\PC\PycharmProjects\Tool_shop\src\tool_shop\data\rm_data" />
+      <recent name="C:\Users\PC\PycharmProjects\Tool_shop\src\tool_shop\data\rm_data\icons" />
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Python tests for test_main_page.test_search_from_main">
@@ -239,7 +231,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769786015443</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Readme">
+      <option name="closed" value="true" />
+      <created>1769857559343</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1769857559344</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -274,6 +274,7 @@
     <MESSAGE value="sing in page tests" />
     <MESSAGE value="Readme + mobile app tests + browserstack configuration" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;README.md" />
+    <MESSAGE value="Readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Readme" />
   </component>
 </project>
