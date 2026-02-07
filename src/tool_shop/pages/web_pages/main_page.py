@@ -1,6 +1,8 @@
 import requests
 from playwright.sync_api import Page, expect
 import allure
+
+import config
 from tool_shop.data.helpers import parse_price
 from tool_shop.data.data import Product
 from config import Config
@@ -156,7 +158,7 @@ class MainPage:
 
         # API запрос
         response = requests.get(
-            "http://localhost:8091/products",
+            f"{Config.API_BASE_URL}/products",
             params={"between": "price,15,28"}
         )
         response.raise_for_status()

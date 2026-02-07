@@ -96,5 +96,4 @@ allure serve  # Отчёты
 
 ----
 
-**Репозиторий**: [github.com/ZaitsevaYG/Ui_Api_gRPC_testProject]([https://github.com/ZaitsevaYG/Ui_Api_gRPC_testProject/])<br>
 **Контакты**: [zaitseva.yg@gmail.com/Telegram @ZaitsevaYana]

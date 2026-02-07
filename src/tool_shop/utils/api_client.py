@@ -104,11 +104,9 @@ class AuthAPIClient(APIClient):
         return response.json()
 
     def set_token(self, token: str):
-
         self.token = token
 
     def refresh_token(self) -> Dict[str, Any]:
-
         response = self.get("/users/refresh")
         response.raise_for_status()
         data = response.json()
@@ -116,31 +114,16 @@ class AuthAPIClient(APIClient):
         return data
 
     def logout(self):
-
         response = self.get("/users/logout")
         response.raise_for_status()
         self.token = None
         return response.json()
 
     def get_current_user(self) -> Dict[str, Any]:
-
         response = self.get("/users/me")
         response.raise_for_status()
         return response.json()
 
 
 
-def assert_response_status(response: requests.Response, expected_status: int):
 
-    assert response.status_code == expected_status, (
-        f"Expected status {expected_status}, got {response.status_code}. "
-        f"Response: {response.text}"
-    )
-
-
-def assert_response_json(response: requests.Response, expected_keys: list):
-
-    data = response.json()
-    for key in expected_keys:
-        assert key in data, f"Expected key '{key}' not found in response: {data}"
-    return data
